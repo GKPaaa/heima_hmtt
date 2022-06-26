@@ -1,14 +1,10 @@
 <template>
   <div>
-    <van-search
-      v-model="value"
-      shape="round"
-      background="hotpink"
-      placeholder="搜索"
-      input-align="center"
-      left-icon
-    />
-    <template> <van-icon name="chat-o" /> </template>
+    <van-nav-bar fixed>
+      <template #title>
+        <van-button type="primary" size="large">大号按钮</van-button>
+      </template>
+    </van-nav-bar>
   </div>
 </template>
 
@@ -27,8 +23,4 @@ export default {
 </script>
 
 <style scoped lang='less'>
-/deep/ .van-search {
-  padding-left: 83px;
-  padding-right: 112px;
-}
 </style>
