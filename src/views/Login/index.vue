@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view></router-view>
+    <van-nav-bar title="登录" fixed />
   </div>
 </template>
 
@@ -19,4 +19,10 @@ export default {
 </script>
 
 <style scoped lang='less'>
+.van-nav-bar {
+  background-color: pink;
+}
+/deep/ .van-nav-bar__title {
+  color: cyan;
+}
 </style>
