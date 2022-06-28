@@ -1,16 +1,18 @@
 <template>
-  <div>
-    <van-nav-bar fixed>
-      <template #title>首页</template>
-    </van-nav-bar>
-  </div>
+  <i class="toutiao" :class="'toutiao-' + name"></i>
 </template>
 
 <script>
 export default {
+  props: {
+    name: {
+      type: String,
+      require: true
+    }
+  },
   created () { },
   data () {
-    return { value: '' }
+    return {}
   },
   methods: {},
   computed: {},
@@ -20,5 +22,5 @@ export default {
 }
 </script>
 
-<style scoped lang='less'>
+<style scoped>
 </style>

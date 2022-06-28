@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view class="main"></router-view>
     <van-tabbar v-model="active">
       <van-tabbar-item icon="youzan-shield" to="/home" size="40px"
         >首页</van-tabbar-item
@@ -33,4 +33,8 @@ export default {
 </script>
 
 <style scoped lang='less'>
+.main {
+  padding-bottom: 100px;
+  background-color: #f5f7f9;
+}
 </style>

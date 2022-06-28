@@ -29,7 +29,8 @@ const routes = [
         component: Video
       }, {
         path: 'my',
-        component: My
+        component: My,
+        name: 'My'
       }, {
         path: 'question',
         component: Question

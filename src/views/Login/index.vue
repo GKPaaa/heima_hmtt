@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="登录" fixed>
+    <van-nav-bar title="登录" fixed @click-left="$router.back()">
       <!-- <van-icon name="cross" slot="left" /> -->
       <template #left>
         <van-icon name="cross" />
@@ -36,7 +36,8 @@
             },
           ]"
         >
-          <i class="toutiao toutiao-yanzhengma" slot="left-icon"></i>
+          <!-- <i class="toutiao toutiao-yanzhengma" slot="left-icon"></i> -->
+          <MyIcon name="yanzhengma"></MyIcon>
           <template #button>
             <van-count-down
               v-if="isCountDownShow"
@@ -81,8 +82,10 @@ export default {
       // console.log('submit', values)
       try {
         const res = await login(values)
-        console.log(res)
+        // console.log(res)
         this.$store.commit('setUser', res.data.data)
+        // this.$router.push({ path: 'my' })
+        this.$router.push({ name: 'My' })
       } catch (err) {
         console.log(err)
       }

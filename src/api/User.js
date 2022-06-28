@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-
+import store from '@/store'
 export const getSmsCode = (mobile) => {
   return request({
     url: `/sms/codes/${mobile}`
@@ -17,6 +17,18 @@ export const login = ({ mobile, code }) => {
     data: {
       mobile,
       code
+    }
+  })
+}
+/**
+ *获取用户信息
+ * @returns
+ */
+export const getUserInfo = () => {
+  return request({
+    url: 'user',
+    headers: {
+      Authorization: 'Bearer ' + store.state.user.token
     }
   })
 }
