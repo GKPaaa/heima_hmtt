@@ -101,8 +101,8 @@ export default {
   methods: {
     logout () {
       Dialog.confirm({
-        title: '标题',
-        message: '弹窗内容'
+        title: '退出',
+        message: '确认退出？'
       })
         .then(() => {
           // on confirm
