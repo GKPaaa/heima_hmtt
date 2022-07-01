@@ -7,6 +7,10 @@ import 'vant/lib/index.less'
 import 'amfe-flexible'
 import '@/styles/index.less'
 import MyIcon from '@/components/MyIcon.vue'
+import * as obj from '@/filter'
+Object.keys(obj).forEach((key) => {
+  Vue.filter(key, obj[key])
+})
 Vue.components = { MyIcon }
 Vue.use(Vant)
 Vue.config.productionTip = false

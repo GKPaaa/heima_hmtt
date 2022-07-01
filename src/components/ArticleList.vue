@@ -1,26 +1,39 @@
 <template>
   <van-cell-group>
-    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+    <van-pull-refresh
+      v-model="refreshing"
+      @refresh="onRefresh"
+      ref="pullrefresh"
+    >
       <van-list
         v-model="loading"
         :finished="finished"
         finished-text="没有更多了"
         @load="onLoad"
       >
-        <van-cell
+        <!-- <van-cell
           :title="item.title"
           value="内容1"
           label="描述信息1"
           v-for="(item, index) in ArticleList"
           :key="index"
-        />
+        /> -->
+        <ArticleItem
+          v-for="(item, index) in ArticleList"
+          :key="index"
+          :article="item"
+        >
+        </ArticleItem>
       </van-list>
     </van-pull-refresh>
   </van-cell-group>
 </template>
 
 <script>
+import ArticleItem from './ArticleItem.vue'
 import { getArticleList } from '@/api/home'
+let ele = null
+let scollTop = 0
 export default {
   name: 'Article',
   props: {
@@ -33,6 +46,16 @@ export default {
     this.getArticleList()
     console.log(this.id)
     console.log(this.timestamp)
+  },
+  mounted () {
+    ele = this.$refs.pullrefresh.$el
+    this.$refs.pullrefresh.$el.addEventListener('scroll', function () {
+      scollTop = this.scrollTop
+      // console.log(this.scrollTop)
+    })
+  },
+  activated () {
+    ele.scrollTop = scollTop
   },
   data () {
     return {
@@ -76,12 +99,18 @@ export default {
   computed: {},
   watch: {},
   filters: {},
-  components: {}
+  components: {
+    ArticleItem
+  }
 }
 </script>
 
 <style scoped lang='less'>
 .van-cell-group {
   margin-top: 174px;
+}
+/deep/.van-pull-refresh {
+  height: calc(100vh - 274px);
+  overflow: auto;
 }
 </style>

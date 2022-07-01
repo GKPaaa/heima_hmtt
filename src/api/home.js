@@ -24,3 +24,19 @@ export const getArticleList = ({ channel_id, timestamp }) => {
     }
   })
 }
+
+export const getAllArticleList = () => {
+  return request({
+    url: 'channels'
+  })
+}
+
+export const saveChannels = (channels) => {
+  return request({
+    url: 'user/channels',
+    method: 'put',
+    data: {
+      channels
+    }
+  })
+}

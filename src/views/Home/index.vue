@@ -29,42 +29,72 @@
       closeable
       close-icon-position="top-left"
     >
-      <ChannelPanel :channels="MyChannels"></ChannelPanel
+      <ChannelPanel
+        :channels="MyChannels"
+        :active="active"
+        :allArticleList="allArticleList"
+        @change-active="
+          active = $event;
+          isChannelShow = false;
+        "
+        @del-event="active = $event"
+      ></ChannelPanel
     ></van-popup>
   </div>
 </template>
 
 <script>
-import { getMyChannels } from '@/api/home'
+import { getMyChannels, getAllArticleList } from '@/api/home'
+import { getItem } from '@/utils/storage'
 import ChannelPanel from '@/views/Home/compoents/ChannelPanel.vue'
 import ArticleList from '@/components/ArticleList.vue'
-
+const CHANNELS = 'CHANNELS'
 export default {
+  name: 'Home',
   async created () {
     this.getMyChannels()
+    this.getAllArticleList()
   },
   data () {
     return {
       active: 0,
       MyChannels: [],
-      isChannelShow: false
+      isChannelShow: false,
+      allArticleList: []
     }
   },
   methods: {
     async getMyChannels () {
+      const channels = getItem(CHANNELS)
+
+      if (!(this.$store.state.user && this.$store.state.user.token) && channels) {
+        this.MyChannels = channels
+      } else {
+        try {
+          const res = await getMyChannels()
+          // console.log(res)
+          this.MyChannels = res.data.data.channels
+          // console.log(this.MyChannels)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+    },
+    async getAllArticleList () {
       try {
-        const res = await getMyChannels()
-        // console.log(res)
-        this.MyChannels = res.data.data.channels
-        // console.log(this.MyChannels)
+        const res = await getAllArticleList()
+        console.log('123')
+        this.allArticleList = res.data.data.channels
+        console.log(this.allArticleList)
       } catch (err) {
         console.log(err)
       }
     }
+  },
+  computed: {
 
   },
-  computed: {},
-  watch: {},
+
   filters: {},
   components: {
     ArticleList,

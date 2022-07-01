@@ -1,6 +1,8 @@
 <template>
   <div>
-    <router-view class="main"></router-view>
+    <keep-alive :include="['Home']">
+      <router-view class="main"></router-view>
+    </keep-alive>
     <van-tabbar v-model="active">
       <van-tabbar-item icon="youzan-shield" to="/home" size="40px"
         >首页</van-tabbar-item
