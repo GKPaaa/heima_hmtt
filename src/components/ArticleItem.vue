@@ -1,5 +1,11 @@
 <template>
-  <van-cell class="article-item">
+  <van-cell
+    class="article-item"
+    @click="
+      $router.push({ name: 'article', params: { article_id: article.art_id } })
+    "
+  >
+    {{ $route.params.article_id }}
     <div slot="title" class="title van-multi-ellipsis--l2">
       {{ article.title }}
     </div>
@@ -39,6 +45,7 @@ export default {
       required: true
     }
   },
+
   data () {
     return {}
   },

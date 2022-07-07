@@ -44,8 +44,8 @@ export default {
   },
   created () {
     this.getArticleList()
-    console.log(this.id)
-    console.log(this.timestamp)
+    // console.log(this.id)
+    // console.log(this.timestamp)
   },
   mounted () {
     ele = this.$refs.pullrefresh.$el
@@ -75,7 +75,7 @@ export default {
       }
       try {
         const res = await getArticleList({ channel_id: this.id, timestamp: this.timestamp })
-        console.log(res)
+        // console.log(res)
         this.timestamp = res.data.data.pre_timestamp
         if (this.timestamp === null) {
           this.finished = true

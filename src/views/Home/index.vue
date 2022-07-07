@@ -87,7 +87,7 @@ export default {
     async getAllArticleList () {
       try {
         const res = await getAllArticleList()
-        console.log('123')
+        // console.log('123')
         this.allArticleList = res.data.data.channels
         console.log(this.allArticleList)
       } catch (err) {

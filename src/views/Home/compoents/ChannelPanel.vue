@@ -102,7 +102,7 @@ export default {
     channels: {
       async handler (newVal) {
         if (this.$store.state.user && this.$store.state.user.token) { // 登陆后
-          console.log('231')
+          // console.log('231')
           const arr = []
           newVal.forEach((item, index) => {
             arr.push({ id: item.id, seq: index })
